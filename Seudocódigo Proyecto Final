@@ -1,0 +1,942 @@
+/*PROYECTO FINAL                                                Ramirez Esquivel Iann Emmanuel
+Fecha de entrega: 24/01/2021*/
+
+//Programa con funcion de entrenador personal, cronometro o alarma y plan de alimentacion saludable
+
+//Seleccion de librerias
+#include<stdio.h>
+#include<stdlib.h>
+#include<iostream>
+#include<cmath>
+#include<ctime>
+#include<windows.h>
+#include<sstream>
+#include<string>
+
+using namespace std;
+//Funcion principal
+int main(){
+	
+	//Comando para reproduccion de musica
+	char soundfile[] = "C:/Users/Iann Ramírez/Desktop/Facultad de Ingenieria/Fundamentos/JeffSpeed68_-_C_A_P_S_L_O_C_K_R_O_C_K.wav" ;
+
+	cout<<PlaySound((LPCSTR)soundfile, NULL, SND_FILENAME | SND_ASYNC );
+	
+	//Declaracion de variables
+	char op = '\0';
+	int op1 = '\0';
+	int salu = '\0';
+	char nom[10], ape[10];
+	float peso, talla, estatura,Imc;
+	int dia, cdr, t;
+	int segundos=0, minutos=0, horas=0;
+	int v[8];
+	
+	//Escritura y precentacion del menu
+	
+	system("color F1");
+	printf("Ramirez Esquivel Iann Emmanuel										Proyecto Final");
+	printf("								ENTRENADOR PERSONAL							\n\n");
+	printf("\tEste programa esta hecho para ayudarlo a llevar una vida saludable durante su estancia en casa\n\n\n");
+	printf("\tEscriba la letra de la opcion que quiera\n\n");
+	printf("	a)INGRESAR DATOS PERSONALES			b)COMENZAR EL ENTRENAMIENTO		c)SALIR DEL PROGRAMA\n\n\t");
+	scanf("%c",&op);
+	
+	//Estructura de control selectiva
+	
+	switch(op){
+		default:
+			printf("Opcion no valida. \n");
+		break;
+		
+	//Caso a
+	case 'a': //Caso de lectura de informacion de datos sobre estado de salud fisico
+		
+		system("cls"); //Limpieza de la pantalla
+		
+		system("color E0"); //Cambio de color de fondo y letra
+		
+		printf("\n\t\t\t\t\t\tINGRESAR DATOS PERSONALES\n\n");
+		
+		printf("Es hombre | H | o mujer | M | seleccione su letra correspondiente:");
+		setbuf(stdin, NULL);
+		scanf("%c",&op);
+		
+		switch(op){
+		case 'H':
+			printf("\tIngresar nombre y primer apellido\n\t");
+			scanf("%s %s",&nom, &ape);
+			printf("\t¿Quiere ingresar peso, talla y estatura? s | n\n\t");
+			setbuf(stdin, NULL);
+			scanf("%c",&op);
+			
+			switch(op){
+			
+				case 's': //Seleccion de ingreso de datos
+					printf("\tIngresar peso en kilogramos: ");
+					scanf("%f",&peso);
+					printf("\n\tIngresar perimetro abdominal en centimetros: ");
+					scanf("%f",&talla);
+					printf("\n\tIngresar estatura en metros: ");
+					scanf("%f",&estatura);
+					Imc=(talla*talla)/peso; //Formula del Indice de masa corporal
+					if(Imc<25){
+						printf("\n\tSu IMC se encuentre normal");
+					}
+					if(Imc>=25){
+						if(Imc<30){
+							printf("\n\tSu IMC se encuentra en riesgo aumentado (SOBREPESO)");
+						}
+					}
+					if(Imc>=30){
+						if(Imc<35){
+							printf("\n\tSu IMC se encuentra en riesgo moderado (OBESIDAD GRADO I)");
+						}
+					}
+					if(Imc>=35){
+						if(Imc<40){
+							printf("\n\tSu IMC se encuentra en riesgo severo (OBESIDAD GRADO II)");
+						}
+					}
+					if(Imc>=40){
+						printf("\n\tSu IMC se encuentra en riesgo muy severo (OBESIDAD GRADO III)");
+					}
+					if(talla<90){
+						printf("\n\tSu perimetro abdominal se encuentra dentro de los parametros normales");
+					}
+					if(talla>=90){
+						printf("\n\tSu perimetro abdominal se encuentra fuera de los parametros indicados\n\tPuede desencadenar enfermedades");
+					}
+					printf("\n\n\tPara continuar presione cualquier tecla:");
+ 					system("pause -> NULL");
+				case 'n':
+					break;	//En caso de seleccionar que no se salta hasta el caso 
+			}
+			break;
+		case 'M':
+			printf("\tIngresar nombre y primer apellido\n\t");
+			scanf("%s %s",&nom, &ape);
+			printf("\t¿Quiere ingresar peso, talla y estatura? s | n\n\t");
+			setbuf(stdin, NULL);
+			scanf("%c",&op);
+			
+			switch(op){
+			
+				case 's': //Seleccion de ingreso de datos
+					printf("\tIngresar peso en kilogramos: ");
+					scanf("%f",&peso);
+					printf("\n\tIngresar perimetro abdominal en centimetros: ");
+					scanf("%f",&talla);
+					printf("\n\tIngresar estatura en metros: ");
+					scanf("%f",&estatura);
+					Imc=(talla*talla)/peso; //Formula del Indice de masa corporal
+					if(Imc<25){
+						printf("\n\tSu IMC se encuentre normal");
+					}
+					if(Imc>=25){
+						if(Imc<30){
+							printf("\n\tSu IMC se encuentra en riesgo aumentado (SOBREPESO)");
+						}
+					}
+					if(Imc>=30){
+						if(Imc<35){
+							printf("\n\tSu IMC se encuentra en riesgo moderado (OBESIDAD GRADO I)");
+						}
+					}
+					if(Imc>=35){
+						if(Imc<40){
+							printf("\n\tSu IMC se encuentra en riesgo severo (OBESIDAD GRADO II)");
+						}
+					}
+					if(Imc>=40){
+						printf("\n\tSu IMC se encuentra en riesgo muy severo (OBESIDAD GRADO III)");
+					}
+					if(talla<80){
+						printf("\n\tSu perimetro abdominal se encuentra dentro de los parametros normales");
+					}
+					if(talla>=80){
+						printf("\n\tSu perimetro abdominal se encuentra fuera de los parametros indicados\n\tPuede desencadenar enfermedades");
+					}
+					printf("\n\n\tPara continuar presione cualquier tecla:");
+ 					system("pause -> NULL");
+				case 'n':
+					break;	//En caso de seleccionar que no se salta hasta el caso 
+			}
+			break;
+		}
+	//Caso b
+	case 'b': //Caso y seleccion de la rutina del programa
+	
+		system("cls"); //Limpieza de la pantalla
+		
+		system("color B0"); //Cambio de color de fondo y letra
+		//Alimentacion saludable y viable
+		printf("\n\t\t\t\t\tOPCION DE PLAN DE ALIMENTACION\n\n");
+		printf("\tIngrese un numero del 1 al 10: ");
+		setbuf(stdin, NULL);
+		scanf("%d", &salu);
+		if(salu==1){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+		if(salu==2){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tLeche, 1 taza\n\tTostada de atun, 1 pieza\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa de campiñones, 1/2 taza\n\tArroz, 1/4 de taza\n\tEnsalada de ejotes, 1/2 taza\n\tFrijoles caldosos, 1/2 taza\n\t");
+				printf("Fruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEspinacas cocidas al vapor, 1/2 taza");
+				//Cena
+				printf("\nCENA:\n\tCafe con leche, 1 taza\n\tQuesadilla de atun, 1 pieza\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==3){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==4){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==5){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==6){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==7){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==8){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==9){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 		if(salu==10){
+				//Desayuno
+				printf("\nDESAYUNO:\n\tCafe con leche, 1 taza\n\tHuevo, 1 pieza en salsa verde con nopales, 1 taza\n\tTortilla de maiz, 2 piezas\n\tFruta fresca, 1 racion");
+				//Refrigerio
+				printf("\nREFRIGERIO MATUTINO:\n\tFruta fresca, 1 racion");
+				//Comida
+				printf("\nCOMIDA\n\tSopa poblana, 1 tazon\n\tArroz, 1/4 de taza\n\tPescado(60g)\n\tEnsala de lechuga, pepino y jitomate, 1 taza\n\t");
+				printf("Tortilla de maiz, 1 pieza\n\tFrijoles caldosos, 1/2 taza\n\tFruta fresca, 1 racion");
+				//Refigerio vespertino
+				printf("\nREFRIGERIO VESPERTINO:\n\tEnsalada de lechuga, pepino y jitomate, 1 taza");
+				//Cena
+				printf("\nCENA:\n\tYogurt descremado, 3/4 de taza\n\tPechuga de pollo(30g)\n\tFruta fresca, 1 racion\n\n");
+				printf("Para continuar presione cualquier tecla:");
+ 				system("pause -> NULL");
+ 			}
+ 			
+		//Guia de rutina deportiva
+		system("cls"); //Limpieza de la pantalla
+		system("color A0"); //Cambio de color de fondo y letra
+		
+		printf("\n\t\t\t\t\t\tDIA DE TRABAJO\n\n");
+		printf("\tIngrese el dia de la semana en el que se encuentra.\n");
+ 		printf("\t1) Lunes\n");
+ 		printf("\t2) Martes\n");
+ 		printf("\t3) Miercoles\n");
+		printf("\t4) Jueves\n");
+ 		printf("\t5) Viernes\n");
+		printf("\t6) Sabado\n");
+ 		printf("\t7) Domingo\n\t");
+ 		scanf("%d", &op1);
+ 	
+ 		//Correspondencia de los dias de la semana
+ 		//Dia Lunes
+ 		if(op1==1){ //Brazo
+ 			
+ 			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color CF"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tLUNES\n\n");
+ 			printf("\tRutina de Brazo\n");
+ 			printf("\tEscoga la decision que quiera para realizar ejercicio\n\n\t");
+ 			printf("Q)Rutina de ejercicio con peso y barra\t\tP)Rutina de ejercicio con barra pero sin peso \n\t");
+ 			setbuf(stdin, NULL);
+ 			scanf("%c",&op);
+ 			
+ 			switch(op){
+ 				default:
+					printf("Opcion no valida. \n");
+					return 0;
+ 				//Ejercicios con peso
+ 				case 'Q':
+ 					printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 					printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 					
+ 					system("cls"); //Limpieza de la pantalla
+ 					printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+					//Ejercicios asignados	
+ 					printf("\t1)Push Up: https://www.youtube.com/watch?v=0pkjOk0EiAk\n");
+					printf("\t2)Diamantes: https://www.youtube.com/watch?v=PJmOZaGnScA\n");
+					printf("\t3)Curl con mancuerna: https://www.youtube.com/watch?v=COzFAWnbdPY\n");
+					printf("\t4)Pull Ups: https://www.youtube.com/watch?v=HRV5YKKaeVw\n");
+					printf("\t5)Dumbbell Swimmers: https://www.youtube.com/watch?v=88ApUDJwKTw&feature=emb_title\n");
+					printf("\t6)Crossbody Extensions: https://www.youtube.com/watch?v=CQrnORFs_zE\n");
+					printf("\t7)Fondos: https://www.youtube.com/watch?v=PYapgguXgT8\n");
+					printf("\t8)Elevaciones de disco: https://www.youtube.com/watch?v=V17XZcM418o\n");
+					printf("\t9)Copa con mancuerna: https://www.youtube.com/watch?v=N1mPMc5CYqk\n");
+					printf("\t10)Up and Down plank: https://www.youtube.com/watch?v=L4oFJRDAU4Q\n");
+ 					
+ 					printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 					//Commando para la seleccion de numeros al azar
+ 					srand(time(NULL));
+ 					for(int i=0;i<=5;i++){
+ 						v[i]=1+rand()%10;
+ 						printf("\t%d\n",v[i]);
+ 					}
+ 					printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 					printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 					printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 					system("pause -> NULL");
+					//Comando para el uso del cronometro
+					while(1){
+ 						segundos++;
+ 						if(segundos==60){
+ 							segundos=0;
+ 							minutos++;
+							}		
+						system("cls");
+						printf("\n\t[%.2d:%.2d]",minutos,segundos);
+						if(segundos==15){
+							printf("\a");
+							printf("\n\tCAMBIO DE EJERCICIO");
+						}
+						if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+						break;
+					}
+					Sleep(1000);
+					}
+					printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+					printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+					printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+					system("pause -> NULL");
+					system("cls"); //Limpieza de la pantalla
+					system("color 1F"); //Cambio de color de fondo y letra
+					printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+					return 0;
+				//Ejercicios sin peso
+ 				case 'P':
+ 					printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 					printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 					
+ 					system("cls"); //Limpieza de la pantalla
+ 					printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+					//Ejercicios asignados	
+ 					printf("\t1)Push Up: https://www.youtube.com/watch?v=0pkjOk0EiAk\n");
+					printf("\t2)Diamantes: https://www.youtube.com/watch?v=PJmOZaGnScA\n");
+					printf("\t3)Cocodrilo: https://www.youtube.com/watch?v=ZVe62_StT6Y\n");
+					printf("\t4)Arqueros: https://www.youtube.com/watch?v=Ycbbf7_k7Rc\n");
+					printf("\t5)Clapping push ups: https://www.youtube.com/watch?v=EYwWCgM198U\n");
+					printf("\t6)Lizard Walk: https://www.youtube.com/watch?v=uknpT9f0lGo\n");
+					printf("\t7)Fondos: https://www.youtube.com/watch?v=PYapgguXgT8\n");
+					printf("\t8)Pull Ups: https://www.youtube.com/watch?v=HRV5YKKaeVw\n");
+					printf("\t9)Negative Chine Ups: https://www.youtube.com/watch?v=mjNHoibfrMo\n");
+					printf("\t10)Up and Down plank: https://www.youtube.com/watch?v=L4oFJRDAU4Q\n");
+ 					
+ 					printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 					//Commando para la seleccion de numeros al azar
+ 					srand(time(NULL));
+ 					for(int i=0;i<=5;i++){
+ 						v[i]=1+rand()%10;
+ 						printf("\t%d\n",v[i]);
+ 					}
+ 					printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 					printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 					printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 					system("pause -> NULL");
+					//Comando para el uso del crometro
+					while(1){
+ 						segundos++;
+ 						if(segundos==60){
+ 							segundos=0;
+ 							minutos++;
+							}		
+						system("cls");
+						printf("\n\t[%.2d:%.2d]",minutos,segundos);
+						if(segundos==59){
+							printf("\a");
+							printf("\n\tCAMBIO DE EJERCICIO");
+						}
+						if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+						break;
+						}
+						Sleep(1000);
+					}
+					printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+					printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+					printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+					system("pause -> NULL");
+					system("cls"); //Limpieza de la pantalla
+					system("color 1F"); //Cambio de color de fondo y letra
+					printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+					return 0;
+			 }
+		}
+		//Dia Martes
+		if(op1==2){ //Abdomen
+			
+			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color AF"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tMARTES\n\n");
+ 			printf("\tRutina de Abdomen\n");
+ 			printf("\n\n\tSe hara la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 			printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 			printf("\tPara comenzar presione cualquier tecla:");
+ 			system("pause -> NULL");
+ 			system("cls"); //Limpieza de la pantalla
+ 			printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+			//Ejercicios asignados	
+ 			printf("\t1)Abdominales: https://www.youtube.com/watch?v=FBh_7mQvkFc\n");
+			printf("\t2)Crunch: https://www.youtube.com/watch?v=OsUz898onTE\n");
+			printf("\t3)Leg Raises: https://www.youtube.com/watch?v=JB2oyawG9KI\n");
+			printf("\t4)Bicicletas: https://www.youtube.com/watch?v=9FGilxCbdz8\n");
+			printf("\t5)Mountain climbers: https://www.youtube.com/watch?v=nmwgirgXLYM\n");
+			printf("\t6)Toques de talon: https://www.youtube.com/watch?v=FKzs34SjBuc\n");
+			printf("\t7)Russian twist: https://www.youtube.com/watch?v=cJ1ZSWlkKXs\n");
+			printf("\t8)Plancha con rotacion de cadera: https://www.youtube.com/watch?v=ceqX001gOaI\n");
+			printf("\t9)Estrellas: https://www.youtube.com/watch?v=hnOHJtleYnk\n");
+			printf("\t10)Uv Ups: https://www.youtube.com/watch?v=c6pnqpVg_58\n");
+ 			
+ 			printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 			//Commando para la seleccion de numeros al azar
+ 			srand(time(NULL));
+ 			for(int i=0;i<=5;i++){
+ 					v[i]=1+rand()%10;
+ 					printf("\t%d\n",v[i]);
+ 			}
+ 			printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 			printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 			printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 			system("pause -> NULL");
+			//Comando para el uso del crometro
+			while(1){
+ 				segundos++;
+ 				if(segundos==60){
+ 					segundos=0;
+ 					minutos++;
+				}		
+				system("cls");
+				printf("\n\t[%.2d:%.2d]",minutos,segundos);
+				if(segundos==59){
+					printf("\a");
+					printf("\n\tCAMBIO DE EJERCICIO");
+				}
+				if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+				break;
+				}
+				Sleep(1000);
+				}
+				printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+				printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+				printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+				system("pause -> NULL");
+				system("cls"); //Limpieza de la pantalla
+				system("color 1F"); //Cambio de color de fondo y letra
+				printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+				return 0;
+		}
+		//Dia Miercoles
+		if(op1==3){ //Pierna y gluteo
+ 			
+ 			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color BF"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tMIERCOLES\n\n");
+ 			printf("\tRutina de Pierna y Gluteo\n");
+ 			printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 			printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 			printf("\tPara comenzar presione cualquier tecla:");
+ 			system("pause -> NULL");
+ 			system("cls"); //Limpieza de la pantalla
+ 			printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+			//Ejercicios asignados	
+ 			printf("\t1)Squat: https://www.youtube.com/watch?v=beSvHVN8pyc\n");
+			printf("\t2)Squat Jump: https://www.youtube.com/watch?v=CVaEhXotL7M\n");
+			printf("\t3)Escuadras: https://www.youtube.com/watch?v=qfKHl9_EvWc I\n");
+			printf("\t4)Silla electrica: https://www.youtube.com/watch?v=svWccC4cMhw\n");
+			printf("\t5)Rebotes: https://www.youtube.com/watch?v=mbFMbrKMsdo\n");
+			printf("\t6)Elevaciones de talon: https://www.youtube.com/watch?v=kT-daLh6V2k\n");
+			printf("\t7)Metralletas: https://www.youtube.com/watch?v=C1HzU6bFmcg\n");
+			printf("\t8)Impulsos Pelvicos Mayores: https://www.youtube.com/watch?v=hIxCdxMB53k\n");
+			printf("\t9)Criss Cross Squat Jump: https://www.youtube.com/watch?v=pGNTs-oj4eI\n");
+			printf("\t10)Sentadilla sumo: https://www.youtube.com/watch?v=QWRlcesV2MU\n");
+ 			
+ 			printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 			//Commando para la seleccion de numeros al azar
+ 			srand(time(NULL));
+ 			for(int i=0;i<=5;i++){
+ 					v[i]=1+rand()%10;
+ 					printf("\t%d\n",v[i]);
+ 			}
+ 			printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 			printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 			printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 			system("pause -> NULL");
+			//Comando para el uso del crometro
+			while(1){
+ 				segundos++;
+ 				if(segundos==60){
+ 					segundos=0;
+ 					minutos++;
+				}		
+				system("cls");
+				printf("\n\t[%.2d:%.2d]",minutos,segundos);
+				if(segundos==59){
+					printf("\a");
+					printf("\n\tCAMBIO DE EJERCICIO");
+				}
+				if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+				break;
+				}
+				Sleep(1000);
+				}
+				printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+				printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+				printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+				system("pause -> NULL");
+				system("cls"); //Limpieza de la pantalla
+				system("color 1F"); //Cambio de color de fondo y letra
+				printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+				return 0;
+		}
+		//Dia Jueves
+		if(op1==4){ //Cardio
+ 			
+ 			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color EA"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tJUEVES\n\n");
+ 			printf("\tRutina de Cardio\n");
+ 			printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 			printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 			printf("\tPara comenzar presione cualquier tecla:");
+ 			system("pause -> NULL");
+ 			system("cls"); //Limpieza de la pantalla
+ 			printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+			//Ejercicios asignados	
+ 			printf("\t1)Burpees: https://www.youtube.com/watch?v=Uy2nUNX38xE\n");
+			printf("\t2)Squat Jump: https://www.youtube.com/watch?v=CVaEhXotL7M\n");
+			printf("\t3)Jumping Jacks: https://www.youtube.com/watch?v=95j1mH27eXc\n");
+			printf("\t4)High knee: https://www.youtube.com/watch?v=oDdkytliOqE\n");
+			printf("\t5)Trote estatico: https://www.youtube.com/watch?v=h0uMbeHPuNk\n");
+			printf("\t6)Saltos con cuerda: https://www.youtube.com/watch?v=EzcFx7p9gQo\n");
+			printf("\t7)Metralletas: https://www.youtube.com/watch?v=C1HzU6bFmcg\n");
+			printf("\t8)Overhead Knee Pumps: https://www.youtube.com/watch?v=-PLMGF9xPTM\n");
+			printf("\t9)Suicidios: https://www.youtube.com/watch?v=GQi0YkOP7PM\n");
+			printf("\t10)Lateral Jumps: https://www.youtube.com/watch?v=wPZP8Bwxplo\n");
+ 			
+ 			printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 			//Commando para la seleccion de numeros al azar
+ 			srand(time(NULL));
+ 			for(int i=0;i<=5;i++){
+ 					v[i]=1+rand()%10;
+ 					printf("\t%d\n",v[i]);
+ 			}
+ 			printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 			printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 			printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 			system("pause -> NULL");
+			//Comando para el uso del crometro
+			while(1){
+ 				segundos++;
+ 				if(segundos==60){
+ 					segundos=0;
+ 					minutos++;
+				}		
+				system("cls");
+				printf("\n\t[%.2d:%.2d]",minutos,segundos);
+				if(segundos==59){
+					printf("\a");
+					printf("\n\tCAMBIO DE EJERCICIO");
+				}
+				if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+				break;
+				}
+				Sleep(1000);
+				}
+				printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+				printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+				printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+				system("pause -> NULL");
+				system("cls"); //Limpieza de la pantalla
+				system("color 1F"); //Cambio de color de fondo y letra
+				printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+				return 0;
+		}
+		//Dia Viernes
+		if(op1==5){ //Brazo
+ 			
+ 			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color FC"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tVIERNES\n\n");
+ 			printf("\tRutina de Brazo\n");
+ 			printf("\tEscoga la decision que quiera para realizar ejercicio\n\n\t");
+ 			printf("Q)Rutina de ejercicio con peso y barra\t\tP)Rutina de ejercicio con barra pero sin peso \n\t");
+ 			setbuf(stdin, NULL);
+ 			scanf("%c",&op);
+ 			
+ 			switch(op){
+ 				default:
+					printf("Opcion no valida. \n");
+					return 0;
+ 				//Ejercicios con peso
+ 				case 'Q':
+ 					printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 					printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 					
+ 					system("cls"); //Limpieza de la pantalla
+ 					printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+					//Ejercicios asignados	
+ 					printf("\t1)Push Up: https://www.youtube.com/watch?v=0pkjOk0EiAk\n");
+					printf("\t2)Diamantes: https://www.youtube.com/watch?v=PJmOZaGnScA\n");
+					printf("\t3)Curl con mancuerna: https://www.youtube.com/watch?v=COzFAWnbdPY\n");
+					printf("\t4)Pull Ups: https://www.youtube.com/watch?v=HRV5YKKaeVw\n");
+					printf("\t5)Dumbbell Swimmers: https://www.youtube.com/watch?v=88ApUDJwKTw&feature=emb_title\n");
+					printf("\t6)Crossbody Extensions: https://www.youtube.com/watch?v=CQrnORFs_zE\n");
+					printf("\t7)Fondos: https://www.youtube.com/watch?v=PYapgguXgT8\n");
+					printf("\t8)Elevaciones de disco: https://www.youtube.com/watch?v=V17XZcM418o\n");
+					printf("\t9)Copa con mancuerna: https://www.youtube.com/watch?v=N1mPMc5CYqk\n");
+					printf("\t10)Up and Down plank: https://www.youtube.com/watch?v=L4oFJRDAU4Q\n");
+ 					
+ 					printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 					//Commando para la seleccion de numeros al azar
+ 					srand(time(NULL));
+ 					for(int i=0;i<=5;i++){
+ 						v[i]=1+rand()%10;
+ 						printf("\t%d\n",v[i]);
+ 					}
+ 					printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 					printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 					printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 					system("pause -> NULL");
+					//Comando para el uso del crometro
+					while(1){
+ 						segundos++;
+ 						if(segundos==60){
+ 							segundos=0;
+ 							minutos++;
+							}		
+						system("cls");
+						printf("\n\t[%.2d:%.2d]",minutos,segundos);
+						if(segundos==59){
+							printf("\a");
+							printf("\n\tCAMBIO DE EJERCICIO");
+						}
+						if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+						break;
+					}
+					Sleep(1000);
+					}
+					printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+					printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+					printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+					system("pause -> NULL");
+					system("cls"); //Limpieza de la pantalla
+					system("color 1F"); //Cambio de color de fondo y letra
+					printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+					return 0;
+				//Ejercicios sin peso
+ 				case 'P':
+ 					printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 					printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 					
+ 					system("cls"); //Limpieza de la pantalla
+ 					printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+					//Ejercicios asignados	
+ 					printf("\t1)Push Up: https://www.youtube.com/watch?v=0pkjOk0EiAk\n");
+					printf("\t2)Diamantes: https://www.youtube.com/watch?v=PJmOZaGnScA\n");
+					printf("\t3)Cocodrilo: https://www.youtube.com/watch?v=ZVe62_StT6Y\n");
+					printf("\t4)Arqueros: https://www.youtube.com/watch?v=Ycbbf7_k7Rc\n");
+					printf("\t5)Clapping push ups: https://www.youtube.com/watch?v=EYwWCgM198U\n");
+					printf("\t6)Lizard Walk: https://www.youtube.com/watch?v=uknpT9f0lGo\n");
+					printf("\t7)Fondos: https://www.youtube.com/watch?v=PYapgguXgT8\n");
+					printf("\t8)Pull Ups: https://www.youtube.com/watch?v=HRV5YKKaeVw\n");
+					printf("\t9)Negative Chine Ups: https://www.youtube.com/watch?v=mjNHoibfrMo\n");
+					printf("\t10)Up and Down plank: https://www.youtube.com/watch?v=L4oFJRDAU4Q\n");
+ 					
+ 					printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 					//Commando para la seleccion de numeros al azar
+ 					srand(time(NULL));
+ 					for(int i=0;i<=5;i++){
+ 						v[i]=1+rand()%10;
+ 						printf("\t%d\n",v[i]);
+ 					}
+ 					printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 					printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 					printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 					system("pause -> NULL");
+					//Comando para el uso del crometro
+					while(1){
+ 						segundos++;
+ 						if(segundos==60){
+ 							segundos=0;
+ 							minutos++;
+							}		
+						system("cls");
+						printf("\n\t[%.2d:%.2d]",minutos,segundos);
+						if(segundos==59){
+							printf("\a");
+							printf("\n\tCAMBIO DE EJERCICIO");
+						}
+						if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+						break;
+						}
+						Sleep(1000);
+					}
+					printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+					printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+					printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+					system("pause -> NULL");
+					system("cls"); //Limpieza de la pantalla
+					system("color 1F"); //Cambio de color de fondo y letra
+					printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+					return 0;
+			 }
+		}
+		//Dia Sabado
+		if(op1==6){ //Abdomen
+ 			
+ 			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color FA"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tSABADO\n\n");
+ 			printf("\tRutina de Abdomen\n");
+ 			printf("\n\n\tSe hara la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 			printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 			printf("\tPara comenzar presione cualquier tecla:");
+ 			system("pause -> NULL");
+ 			system("cls"); //Limpieza de la pantalla
+ 			printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+			//Ejercicios asignados	
+ 			printf("\t1)Abdominales: https://www.youtube.com/watch?v=FBh_7mQvkFc\n");
+			printf("\t2)Crunch: https://www.youtube.com/watch?v=OsUz898onTE\n");
+			printf("\t3)Leg Raises: https://www.youtube.com/watch?v=JB2oyawG9KI\n");
+			printf("\t4)Bicicletas: https://www.youtube.com/watch?v=9FGilxCbdz8\n");
+			printf("\t5)Mountain climbers: https://www.youtube.com/watch?v=nmwgirgXLYM\n");
+			printf("\t6)Toques de talon: https://www.youtube.com/watch?v=FKzs34SjBuc\n");
+			printf("\t7)Russian twist: https://www.youtube.com/watch?v=cJ1ZSWlkKXs\n");
+			printf("\t8)Plancha con rotacion de cadera: https://www.youtube.com/watch?v=ceqX001gOaI\n");
+			printf("\t9)Estrellas: https://www.youtube.com/watch?v=hnOHJtleYnk\n");
+			printf("\t10)Uv Ups: https://www.youtube.com/watch?v=c6pnqpVg_58\n");
+ 			
+ 			printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 			//Commando para la seleccion de numeros al azar
+ 			srand(time(NULL));
+ 			for(int i=0;i<=5;i++){
+ 					v[i]=1+rand()%10;
+ 					printf("\t%d\n",v[i]);
+ 			}
+ 			printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 			printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 			printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 			system("pause -> NULL");
+			//Comando para el uso del cronometro
+			while(1){
+ 				segundos++;
+ 				if(segundos==60){
+ 					segundos=0;
+ 					minutos++;
+				}		
+				system("cls");
+				printf("\n\t[%.2d:%.2d]",minutos,segundos);
+				if(segundos==59){
+					printf("\a");
+					printf("\n\tCAMBIO DE EJERCICIO");
+				}
+				if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+				break;
+				}
+				Sleep(1000);
+				}
+				printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+				printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+				printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+				system("pause -> NULL");
+				system("cls"); //Limpieza de la pantalla
+				system("color 1F"); //Cambio de color de fondo y letra
+				printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+				return 0;
+		}
+		//Dia Domingo
+		if(op1==7){ //Pierna y gluteo
+ 			
+ 			system("cls"); //Limpieza de la pantalla
+ 			
+ 			system("color BF"); //Cambio de color de fondo y letra
+ 			
+ 			printf("\n\t\t\t\t\tDOMINGO\n\n");
+ 			printf("\tRutina de Pierna y Gluteo\n");
+ 			printf("\n\n\tSe hará la rutina mediante 30 minutos en intervalos de un minuto\n");
+ 			printf("\tA continuacion se le presentara un serie de ejecicios que podra realizar\n\n"); 
+ 			printf("\tPara comenzar presione cualquier tecla:");
+ 			system("pause -> NULL");
+ 			system("cls"); //Limpieza de la pantalla
+ 			printf("\n\tA continuacion se le presentara los ejercicios asignados por cada numero\n\n");
+			//Ejercicios asignados	
+ 			printf("\t1)Squat: https://www.youtube.com/watch?v=beSvHVN8pyc\n");
+			printf("\t2)Squat Jump: https://www.youtube.com/watch?v=CVaEhXotL7M\n");
+			printf("\t3)Escuadras: https://www.youtube.com/watch?v=qfKHl9_EvWc I\n");
+			printf("\t4)Silla electrica: https://www.youtube.com/watch?v=svWccC4cMhw\n");
+			printf("\t5)Rebotes: https://www.youtube.com/watch?v=mbFMbrKMsdo\n");
+			printf("\t6)Elevaciones de talon: https://www.youtube.com/watch?v=kT-daLh6V2k\n");
+			printf("\t7)Metralletas: https://www.youtube.com/watch?v=C1HzU6bFmcg\n");
+			printf("\t8)Impulsos Pelvicos Mayores: https://www.youtube.com/watch?v=hIxCdxMB53k\n");
+			printf("\t9)Criss Cross Squat Jump: https://www.youtube.com/watch?v=pGNTs-oj4eI\n");
+			printf("\t10)Sentadilla sumo: https://www.youtube.com/watch?v=QWRlcesV2MU\n");
+ 			
+ 			printf("\n\tSe realizaran los ejercicios segun los numeros proporcionados por el programa\n");
+ 			//Commando para la seleccion de numeros al azar
+ 			srand(time(NULL));
+ 			for(int i=0;i<=5;i++){
+ 					v[i]=1+rand()%10;
+ 					printf("\t%d\n",v[i]);
+ 			}
+ 			printf("\n\tSe repetira el circuito de ejercicios un total de 6 veces\n");
+ 			printf("\n\tCada vez que suene el programa se cambiara al siguiente ejercicio correspondiente\n");
+ 			printf("\tPara comenzar con el cronometro presione cualquier tecla:");
+ 			system("pause -> NULL");
+			//Comando para el uso del crometro
+			while(1){
+ 				segundos++;
+ 				if(segundos==60){
+ 					segundos=0;
+ 					minutos++;
+				}		
+				system("cls");
+				printf("\n\t[%.2d:%.2d]",minutos,segundos);
+				if(segundos==59){
+					printf("\a");
+					printf("\n\tCAMBIO DE EJERCICIO");
+				}
+				if(minutos==30){ //Condicional de que en 30 minutos el cronometro pare
+				break;
+				}
+				Sleep(1000);
+				}
+				printf("\n\tHA TERMINADO LA RUTINA DE EJERCICIO\n\n\t");
+				printf("Espero que la rutina le haya gustado y sea favorable para tener buenos resultados\n\n");
+				printf("\tMuchas gracias por utilizar el programa, espero verlo pronto");
+				system("pause -> NULL");
+				system("cls"); //Limpieza de la pantalla
+				system("color 1F"); //Cambio de color de fondo y letra
+				printf("\n\n\tPrograma realizado por Ramirez Esquivel Iann Emmanuel\t\tFacultad de Ingeria");
+				return 0;
+		}
+	//Caso c
+	case 'c':
+		printf("Gracias y que tenga un buen dia.");
+		break;
+	}
+	system("pause");
+
+return 0;
+}
